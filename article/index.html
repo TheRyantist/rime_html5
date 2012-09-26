@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<style type="text/css">
+			body {
+				padding-top: 60px;
+			}
+
+			#header {
+				padding-top: 15px;
+				background-image: url('resources/images/buddha.png');
+				background-position: 280px -200px;
+				background-repeat: no-repeat;
+				background-color: black;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.css"/>
+	</head>
+	<body data-spy="scroll" data-target=".subnav">
+		<audio id="ambient_music" autoplay loop preload="auto">
+			<source src="resources/audio/dalai_lama.mp3" type="audio/mp3">
+
+			<div class="alert">
+		  		<button class="close" data-dismiss="alert">×</button>
+		  		<strong>Warning!</strong> Your browser does not support HTML5 audio. Please upgrade your browser or install <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.
+			</div>
+		</audio> 
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+						<div class="brand">
+						<a href="#">Rime Buddhist Center</a>
+						</div>
+						<ul class="nav">
+	  						<li>
+	    						<a href="#home">Home</a>
+	  						</li>
+	  						<li><a href="#about">About</a></li>
+	  						<li><a href="#events">Events</a></li>
+	  						<li class="active"><a href="#community">Community</a></li>
+	  						<li><a href="#resources">Resources</a></li>
+	  						<li><a href="#contact">Contact Us</a></li>
+	  					</ul>
+	  					<ul class="nav pull-right">
+	  						<li><a id="sound-toggle-btn" href="#sound-on"><i class="icon-volume-up icon-white"></i></a></li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+		</div>
+			<script type="text/javascript" src="../resources/js/jquery.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		if(sessionStorage) {
+			var mute = sessionStorage.getItem("rimeCenterMusicMuted");
+			var a = $('#ambient_music')[0];
+			if(!a.paused && mute == "true") {
+				a.pause();
+				$('#sound-toggle-btn i').toggleClass('icon-volume-up icon-volume-off');
+			}
+		}
+
+
+	})
+		$('#sound-toggle-btn').bind('click', function(){
+			var audio = $('#ambient_music')[0];
+			if(audio.paused) {
+				audio.play();
+				$('#sound-toggle-btn i').toggleClass('icon-volume-up icon-volume-off');
+				if(sessionStorage) {
+					sessionStorage.setItem("rimeCenterMusicMuted", false);
+				}
+			} else {
+				audio.pause();
+				$('#sound-toggle-btn i').toggleClass('icon-volume-up icon-volume-off');
+				if(sessionStorage) {
+					sessionStorage.setItem("rimeCenterMusicMuted", true);
+				}
+			}
+		});
+	</script>
+	</body>
+</html>
